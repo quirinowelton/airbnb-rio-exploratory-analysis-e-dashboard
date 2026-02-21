@@ -35,6 +35,7 @@ O dataset inclui variáveis como:
 -   `number_of_reviews` -- quantidade de avaliações\
 -   `calculated_host_listings_count` -- quantos anúncios aquele mesmo anfitrião (host) possui
 -   `availability_365` -- disponibilidade ao longo do ano
+-   `number_of_reviews_ltm` -- número de avaliações nos últimos 12 meses
 
 A base é composta majoritariamente por variáveis categóricas e
 numéricas, permitindo análises de distribuição, comparação entre bairros
