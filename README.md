@@ -33,6 +33,7 @@ O dataset inclui variáveis como:
 -   `price` -- preço por noite\
 -   `minimum_nights` -- número mínimo de noites\
 -   `number_of_reviews` -- quantidade de avaliações\
+-   `calculated_host_listings_count` -- quantos anúncios aquele mesmo anfitrião (host) possui
 -   `availability_365` -- disponibilidade ao longo do ano
 
 A base é composta majoritariamente por variáveis categóricas e
