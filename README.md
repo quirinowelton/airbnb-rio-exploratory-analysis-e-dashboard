@@ -13,6 +13,7 @@ localização, perfil dos anúncios e características das acomodações.
 
 Fonte: https://insideairbnb.com/
 
+![logo_airbnb](/airbnb.jpg)
 ------------------------------------------------------------------------
 
 ## Sobre a base de dados
