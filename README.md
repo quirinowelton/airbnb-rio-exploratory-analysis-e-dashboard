@@ -12,7 +12,8 @@ temporada.
 A base inclui informações como preço por noite, tipo de acomodação,
 bairro, número de avaliações, disponibilidade ao longo do ano e
 quantidade de anúncios por anfitrião.
-![logo_airbnb](/airbnb.jpg)
+
+![logo_airbnb](img/airbnb.jpg)
 ------------------------------------------------------------------------
 
 ## Tratamento dos Dados
@@ -35,27 +36,42 @@ comum em mercados imobiliários.
 
 ## Principais Insights
 
+### 1. O Mercado por Bairros e de Luxo Extremo
 A maior concentração de anúncios está em Copacabana, seguida por Ipanema
 e Barra da Tijuca. Quando analisamos apenas os imóveis na faixa mais
 alta de preço (percentil 99--100%), bairros como Barra da Tijuca, Copacabana, Joá, São Conrado e Ipanema ganham maior relevância.
 
+<img src="img/bairros_anuncios.png" width="500">  <img src="img/luxo_bairros.png" width="400"> |
+
+### 2. Tipos de imóveis
 Cerca de 80% dos anúncios são de imóveis inteiros (casas ou
 apartamentos), enquanto quartos privados representam a maior parte do
 restante.
 
+<img src="img/imoveis.png" width="700"> 
+
+### 3. Comportamento Log-Normal de Preços
+O mercado imobiliário raramente é linear. Ao aplicar a transformação logarítmica, identifiquei que o "coração" do mercado do Rio pulsa entre R$ 148,00 e R$ 403,00 por noite.
+
+<img src="img/precos.png" width="700"> 
+
+### 4. Correlação Entre as Variáveis
 A análise de correlação mostrou relação forte entre número total de
 avaliações, avaliações por mês e avaliações nos últimos 12 meses, como
 esperado. Não foram identificadas correlações relevantes entre preço e
 variáveis operacionais.
 
-Na análise textual dos títulos dos anúncios, localização aparece como
-principal fator estratégico. Termos ligados a bairros valorizados e
-palavras como "praia", "vista" e "beach" são frequentemente utilizados
-como diferencial competitivo.
+<img src="img/corr.png" width="700"> 
 
-Devido à presença de valores extremos, a mediana foi utilizada como
-principal medida de tendência central para comparação entre bairros,
-oferecendo uma visão mais robusta do comportamento típico dos preços.
+### 5. Análise Textual dos Anúncios
+Através do processamento de texto (NLP básico), ficou claro que o marketing dos anúncios foca no estilo de vida:
+
+Palavras como "Vista", "Posto", "Beach" e "Próximo" são os principais gatilhos de vendas.
+O Leblon, apesar de ser o 7º em volume de anúncios, é um dos termos mais citados, funcionando como um "selo de qualidade" mesmo em anúncios de bairros vizinhos.
+
+<img src="img/nuvem_palavras.png" width="700"> 
+
+
 
 ------------------------------------------------------------------------
 
