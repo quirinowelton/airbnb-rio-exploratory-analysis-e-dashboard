@@ -42,7 +42,7 @@ e Barra da Tijuca. Quando analisamos apenas os imóveis na faixa mais
 alta de preço (percentil 99--100%), bairros como Barra da Tijuca, Copacabana, Joá, São Conrado e Ipanema ganham maior relevância. 
 Para vizualizar o mapa interativo dos bairros com mais anúncios ele esta nomeado como "mapa_frequencia_bairros.html"
 
-<img src="img/bairros_anuncios.png" width="475">  <img src="img/luxo_bairros.png" width="375"> 
+<img src="img/bairros_anuncios.png" width="450">  <img src="img/luxo_bairros.png" width="350"> 
  <img src="img/mapa.png" width="905">
 
 ### 2. Tipos de imóveis
