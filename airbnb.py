@@ -126,10 +126,26 @@ df_new.groupby('faixa_preco')['price'].count()
 # com exceção de "Luxo Extremo", que representa apenas pequena parcela dos anúncios.
 
 # %%
-df_new['room_type'].value_counts(normalize=True)
 
-# Observa-se que aproximadamente 80,9% são imóveis inteiros
-# e cerca de 18% correspondem a quartos privados, compartilhados ou de hotel.
+acomodacoes = df_new['room_type'].value_counts(normalize=True)
+
+plt.figure(figsize=(10, 6))
+sns.set_style("ticks")
+sns.set_palette(["#FF5A5F"])
+
+ax = sns.barplot(x=acomodacoes.index, y=acomodacoes.values)
+
+for i, v in enumerate(acomodacoes.values):
+    ax.text(i, v + 0.01, f'{v*100:.1f}%', ha='center', va='bottom', fontweight='bold')
+
+plt.ylabel('Proporção')
+plt.xlabel('Tipo de Acomodação')
+plt.title('Distribuição por Tipo de Quarto')
+
+plt.ylim(0, max(acomodacoes.values) * 1.15)
+
+sns.despine() 
+plt.show()
 
 # %%
 # Top 10 bairros com maior número de anúncios
@@ -139,8 +155,9 @@ top_neighbourhood = (
     .head(10)
 )
 
-plt.figure(figsize=(10,6))
-
+plt.figure(figsize=(10, 6))
+sns.set_style("ticks")
+sns.set_palette(["#FF5A5F"])
 ax = sns.barplot(
     x=top_neighbourhood.values,
     y=top_neighbourhood.index
@@ -150,9 +167,9 @@ for i, v in enumerate(top_neighbourhood.values):
     ax.text(v, i, f'{v*100:.1f}%', va='center')
 
 plt.xlabel('Proporção')
-plt.ylabel('Bairro')
+plt.ylabel('')
 plt.title('Top 10 Bairros por Proporção de Anúncios')
-
+sns.despine()
 plt.show()
 
 # %%
@@ -168,7 +185,9 @@ top5_bairros_luxuosos = (
 
 top5_bairros_luxuosos.columns = ['neighbourhood', 'proporcao']
 
-plt.figure(figsize=(8,5))
+plt.figure(figsize=(10, 6))
+sns.set_style("ticks")
+sns.set_palette(["#FF5A5F"])
 ax = sns.barplot(data=top5_bairros_luxuosos, x='neighbourhood', y='proporcao')
 
 for p in ax.patches:
@@ -177,6 +196,10 @@ for p in ax.patches:
                 ha='center', va='bottom')
 
 plt.xticks(rotation=45)
+plt.title("Análise dos Bairros com Imóveis de Luxo Extremo")
+plt.xlabel("Bairros")
+plt.ylabel("Proporção")
+sns.despine() 
 plt.show()
 
 # %%
@@ -246,6 +269,6 @@ bairros_max = df_new.groupby('neighbourhood')['price'].max().sort_values(ascendi
 
 # Como há valores extremos elevados, utilizamos a mediana como medida de tendência central
 bairros_median = df_new.groupby('neighbourhood')['price'].median().sort_values(ascending=False)
-
+bairros_median
 # Observa-se que, ao utilizar a mediana, os bairros mais caros mudam.
 # Isso indica alta variabilidade nos preços em determinados bairros.
