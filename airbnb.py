@@ -89,6 +89,11 @@ plt.show()
 # Imóveis acima desse valor não possuem avaliações nos últimos 12 meses.
 df_new = df[df['price'] <= 60000.0]
 
+plt.figure(figsize=(8,5))
+plt.boxplot(df_new['price'])
+plt.ylabel('Preço')
+plt.title('Boxplot - Distribuição de Preços')
+plt.show()
 # %%
 # A distribuição original apresentou forte assimetria à direita.
 # Após aplicar transformação logarítmica, observou-se comportamento próximo ao normal,
@@ -285,11 +290,3 @@ counter = Counter(filtered_words)
 counter.most_common(20)
 
 # %%
-# Análise de preço máximo por bairro
-bairros_max = df_new.groupby('neighbourhood')['price'].max().sort_values(ascending=False)
-
-# Como há valores extremos elevados, utilizamos a mediana como medida de tendência central
-bairros_median = df_new.groupby('neighbourhood')['price'].median().sort_values(ascending=False)
-bairros_median
-# Observa-se que, ao utilizar a mediana, os bairros mais caros mudam.
-# Isso indica alta variabilidade nos preços em determinados bairros.
