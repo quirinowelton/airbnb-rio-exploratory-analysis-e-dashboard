@@ -42,7 +42,7 @@ e Barra da Tijuca. Quando analisamos apenas os imóveis na faixa mais
 alta de preço (percentil 99--100%), bairros como Barra da Tijuca, Copacabana, Joá, São Conrado e Ipanema ganham maior relevância. 
 Para vizualizar o mapa interativo dos bairros com mais anúncios ele esta nomeado como "mapa_frequencia_bairros.html"
 
-<img src="img/bairros_anuncios.png" width="450">  <img src="img/luxo_bairros.png" width="350"> 
+<img src="img/bairros_anuncios.png" width="450">  <img src="img/luxo_bairros.png" width="360"> 
  <img src="img/mapa.png" width="905">
 
 ### 2. Tipos de imóveis
@@ -73,7 +73,13 @@ O Leblon, apesar de ser o 7º em volume de anúncios, é um dos termos mais cita
 
 <img src="img/nuvem_palavras.png" width="905"> 
 
+------------------------------------------------------------------------
 
+## Dashboard Power BI
+
+Pelo Dashboard é possível observar valores de  **Total de Anúncios**, **Mediana do Preço por Noite**, **Total Reviews** e gráficos com informações sobre o **Top 10 de Bairros Mais Anúnciados**, **Total de Reviews por Ano**, **Percentual das Faixas de Preço** e o **Percentual de Quartos Anúnciados**.
+
+<img src="img/dashboarPowerBI.png" width="905"> 
 
 ------------------------------------------------------------------------
 
@@ -87,3 +93,4 @@ principal determinante estratégico na formação de valor dos anúncios.
 ------------------------------------------------------------------------
 
 **Fonte dos dados:** https://insideairbnb.com/
+
