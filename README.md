@@ -40,7 +40,7 @@ comum em mercados imobiliários.
 A maior concentração de anúncios está em Copacabana, seguida por Ipanema
 e Barra da Tijuca. Quando analisamos apenas os imóveis na faixa mais
 alta de preço (percentil 99--100%), bairros como Barra da Tijuca, Copacabana, Joá, São Conrado e Ipanema ganham maior relevância. 
-[Clique aqui para vizualizar o mapa interativo dos bairros com mais anúncios](https://htmlpreview.github.io/?https://github.com/quirinowelton/airbnb-rio-exploratory-analysis/blob/main/mapa_frequencia_bairros.html)
+Para vizualizar o mapa interativo dos bairros com mais anúncios ele esta nomeado como "mapa_frequencia_bairros.html"
 
 <img src="img/bairros_anuncios.png" width="500">  <img src="img/luxo_bairros.png" width="400"> 
  <img src="img/mapa.png" width="905">
