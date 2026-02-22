@@ -7,6 +7,9 @@ import numpy as np
 from collections import Counter
 from wordcloud import WordCloud, STOPWORDS
 import re
+import folium
+import geobr
+
 
 df = pd.read_csv("listings.csv", sep=",", encoding="UTF-8")
 
@@ -172,7 +175,9 @@ plt.ylim(0, max(acomodacoes.values) * 1.15)
 
 sns.despine() 
 plt.show()
-
+#%%
+# ver a média da coluna `price` por tipo de acomodação
+df_new.groupby(['room_type']).price.mean().sort_values(ascending=False)
 # %%
 # Top 10 bairros com maior número de anúncios
 top_neighbourhood = (
@@ -290,3 +295,33 @@ counter = Counter(filtered_words)
 counter.most_common(20)
 
 # %%
+
+# Baixa o shape do município do Rio de Janeiro
+rj_shape = geobr.read_municipality(code_muni=3304557, year=2020)
+
+# Para baixar todos os bairros do estado (e depois filtrar a capital)
+bairros = geobr.read_neighborhood(year=2010)
+
+#%%
+bairros_counts = df_new.groupby('neighbourhood').agg({
+    'latitude': 'mean',
+    'longitude': 'mean',
+    'neighbourhood': 'count'
+}).rename(columns={'neighbourhood': 'contagem'}).reset_index()
+
+mapa = folium.Map(location=[-22.9519, -43.2105], zoom_start=12, tiles='cartodbpositron')
+
+for index, local in bairros_counts.iterrows():
+    folium.CircleMarker(
+        location=[local['latitude'], local['longitude']],
+        # O raio é baseado na contagem. O divisor (ex: /100) serve para o círculo não ficar gigante
+        radius=local['contagem'] / 100, 
+        popup=f"{local['neighbourhood']}: {local['contagem']} anúncios",
+        color='#FF5A5F', # Cor do Airbnb
+        fill=True,
+        fill_color='#FF5A5F',
+        fill_opacity=0.6,
+        weight=1
+    ).add_to(mapa)
+
+mapa.save('mapa_frequencia_bairros.html')
