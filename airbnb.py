@@ -2,6 +2,7 @@
 import pandas as pd
 import seaborn as sns
 import matplotlib.pyplot as plt
+import matplotlib.patches as mpatches
 import numpy as np
 from collections import Counter
 from wordcloud import WordCloud, STOPWORDS
@@ -93,11 +94,31 @@ df_new = df[df['price'] <= 60000.0]
 # Após aplicar transformação logarítmica, observou-se comportamento próximo ao normal,
 # indicando padrão log-normal típico do mercado imobiliário.
 
-plt.figure(figsize=(8,5))
-sns.histplot(np.log(df['price']), bins=50)
-plt.title("Distribuição Log do Preço")
-plt.show()
+plt.figure(figsize=(10, 6))
+sns.set_style("ticks")
+sns.set_palette(["#FF5A5F"])
+ax = sns.histplot(np.log(df['price']), bins=50)
 
+legenda_texto = (
+    "Conversão Log → Real:\n"
+    "log=4  ≈ R$ 54.60\n"
+    "log=5  ≈ R$ 148.41\n"
+    "log=6  ≈ R$ 403.43\n"
+    "log=7  ≈ R$ 1096.63\n"
+    "log=8  ≈ R$ 2980.96\n"
+    "log=9  ≈ R$ 8103.08\n"
+    "log=10 ≈ R$ 22026.47"
+)
+
+patch_invisivel = mpatches.Patch(color='none', label=legenda_texto)
+plt.legend(handles=[patch_invisivel], loc='upper right', frameon=True, fontsize=9)
+
+plt.title("Distribuição Log do Preço")
+plt.xlabel("Log do Preço")
+plt.ylabel("Qtd Anúncios")
+
+sns.despine()
+plt.show()
 # %%
 valores_log = [4,5,6,7,8,9,10,12]
 
