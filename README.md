@@ -1,58 +1,71 @@
+
 # Análise Exploratória --- Airbnb Rio de Janeiro
 
-## Sobre a empresa
+## Contexto
 
-O Airbnb é uma plataforma digital que conecta pessoas que desejam alugar
-imóveis por temporada a viajantes do mundo todo. O modelo de negócio é
-baseado na economia compartilhada, permitindo que anfitriões anunciem
-casas, apartamentos ou quartos e recebam hóspedes por períodos curtos.
+Este projeto apresenta uma análise exploratória dos dados públicos do
+Inside Airbnb referentes à cidade do Rio de Janeiro. O objetivo foi
+compreender o comportamento dos preços, a distribuição geográfica dos
+anúncios e identificar padrões relevantes no mercado de locação por
+temporada.
 
-O Inside Airbnb disponibiliza dados públicos extraídos da plataforma,
-organizados por cidade. Esses dados permitem análises sobre preços,
-localização, perfil dos anúncios e características das acomodações.
-
-Fonte: https://insideairbnb.com/
-
+A base inclui informações como preço por noite, tipo de acomodação,
+bairro, número de avaliações, disponibilidade ao longo do ano e
+quantidade de anúncios por anfitrião.
 ![logo_airbnb](/airbnb.jpg)
 ------------------------------------------------------------------------
 
-## Sobre a base de dados
+## Tratamento dos Dados
 
-Neste projeto utilizei a base referente ao Rio de Janeiro, contendo
-informações sobre anúncios ativos na cidade.
+Antes das análises, foi realizada uma etapa de limpeza e padronização:
 
-O dataset inclui variáveis como:
+-   Remoção de colunas totalmente vazias.
+-   Exclusão de registros com ausência de `host_name`, devido à baixa
+    representatividade.
+-   Remoção de aproximadamente 10% da base por ausência de preço.
+-   Definição de um teto analítico de R\$60.000 para reduzir o impacto
+    de outliers extremos.
 
--   `id` -- identificador do anúncio\
--   `name` -- nome do anúncio\
--   `host_id` -- identificador do anfitrião\
--   `neighbourhood_group` e `neighbourhood` -- localização do imóvel\
--   `latitude` e `longitude` -- coordenadas geográficas\
--   `room_type` -- tipo de acomodação (casa inteira, quarto privado,
-    etc.)\
--   `price` -- preço por noite\
--   `minimum_nights` -- número mínimo de noites\
--   `number_of_reviews` -- quantidade de avaliações\
--   `calculated_host_listings_count` -- quantos anúncios aquele mesmo anfitrião (host) possui
--   `availability_365` -- disponibilidade ao longo do ano
--   `number_of_reviews_ltm` -- número de avaliações nos últimos 12 meses
-
-A base é composta majoritariamente por variáveis categóricas e
-numéricas, permitindo análises de distribuição, comparação entre bairros
-e avaliação de padrões de preço.
+A variável preço apresentou forte assimetria à direita, com valores
+muito elevados. Após aplicação de transformação logarítmica, observou-se
+comportamento próximo do normal, indicando um padrão log-normal ---
+comum em mercados imobiliários.
 
 ------------------------------------------------------------------------
 
-## Objetivo da análise
+## Principais Insights
 
-A análise exploratória teve como foco:
+A maior concentração de anúncios está em Copacabana, seguida por Ipanema
+e Barra da Tijuca. Quando analisamos apenas os imóveis na faixa mais
+alta de preço (percentil 99--100%), bairros como Barra da Tijuca, Copacabana, Joá, São Conrado e Ipanema ganham maior relevância.
 
--   Entender a distribuição de preços na cidade\
--   Identificar bairros com maior concentração de anúncios\
--   Comparar tipos de acomodação\
--   Avaliar a presença de outliers\
--   Explorar possíveis relações entre variáveis
+Cerca de 80% dos anúncios são de imóveis inteiros (casas ou
+apartamentos), enquanto quartos privados representam a maior parte do
+restante.
 
-O trabalho envolveu limpeza dos dados, tratamento de valores ausentes e
-análise estatística descritiva, com visualizações para apoiar a
-interpretação.
+A análise de correlação mostrou relação forte entre número total de
+avaliações, avaliações por mês e avaliações nos últimos 12 meses, como
+esperado. Não foram identificadas correlações relevantes entre preço e
+variáveis operacionais.
+
+Na análise textual dos títulos dos anúncios, localização aparece como
+principal fator estratégico. Termos ligados a bairros valorizados e
+palavras como "praia", "vista" e "beach" são frequentemente utilizados
+como diferencial competitivo.
+
+Devido à presença de valores extremos, a mediana foi utilizada como
+principal medida de tendência central para comparação entre bairros,
+oferecendo uma visão mais robusta do comportamento típico dos preços.
+
+------------------------------------------------------------------------
+
+## Conclusão
+
+O mercado de Airbnb no Rio de Janeiro apresenta forte concentração em
+áreas turísticas, alta variação de preços e padrão de distribuição
+compatível com mercados imobiliários. A localização permanece como
+principal determinante estratégico na formação de valor dos anúncios.
+
+------------------------------------------------------------------------
+
+**Fonte dos dados:** https://insideairbnb.com/
